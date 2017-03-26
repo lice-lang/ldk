@@ -1,14 +1,37 @@
+
+## output ##
+
+out
+bin
+build
+*.class
+*.jar
+*.war
+*.exe
+
+## config ##
+
+#.idea
 .gradle
-build/
 
-# Ignore Gradle GUI config
-gradle-app.setting
+## unnecessary ##
 
-# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
+.gradle/
+#gradle/
+local.properties
+# .gitignore
 
-# Cache of project
-.gradletasknamecache
+## Android
 
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
+*.iml
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.idea/
+
+
+/lib/
