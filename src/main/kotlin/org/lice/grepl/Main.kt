@@ -19,37 +19,37 @@ import java.util.*
  */
 
 object Main {
-    @JvmStatic
-    fun main(args: Array<String>) {
-        val console: ConsoleReader = ConsoleReader()
+	@JvmStatic
+	fun main(args: Array<String>) {
+		val console: ConsoleReader = ConsoleReader()
 
 
-        GRepl.message.println()
+		GRepl.message.println()
 
-        if (args.isEmpty()) {
-            val sl = SymbolList(true)
-            val grepl = GRepl(sl)
+		if (args.isEmpty()) {
+			val sl = SymbolList(true)
+			val grepl = GRepl(sl)
 
-            while (true) {
-                console.addCompleter { s, i, list ->
-                    if (s.isNotEmpty()) {
-                        val arr = s.split(' ', '(', ')', ',')
-                        if (arr.isNotEmpty()) {
-                            list.addAll(sl.getSymbolList().filter {
-                                it.startsWith(arr.last())
-                            })
+			while (true) {
+				console.addCompleter { s, i, list ->
+					if (s.isNotEmpty()) {
+						val arr = s.split(' ', '(', ')', ',')
+						if (arr.isNotEmpty()) {
+							list.addAll(sl.getSymbolList().filter {
+								it.startsWith(arr.last())
+							})
 
-                            i - arr.last().length
-                        } else i
-                    } else i
-                }
-                grepl.handle(console.readLine("\nLice >"))
-            }
+							i - arr.last().length
+						} else i
+					} else i
+				}
+				grepl.handle(console.readLine("\nLice >"))
+			}
 
-        } else {
-            Main.interpret(File(args[0]).apply {
-                if (!exists()) serr("file not found: ${args[0]}")
-            })
-        }
-    }
+		} else {
+			Main.interpret(File(args[0]).apply {
+				if (!exists()) serr("file not found: ${args[0]}")
+			})
+		}
+	}
 }
