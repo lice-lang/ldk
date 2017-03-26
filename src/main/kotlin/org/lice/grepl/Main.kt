@@ -22,12 +22,13 @@ object Main {
     @JvmStatic
     fun main(args: Array<String>) {
         val console: ConsoleReader = ConsoleReader()
-        val grepl = GRepl()
+
 
         GRepl.message.println()
 
         if (args.isEmpty()) {
             val sl = SymbolList(true)
+            val grepl = GRepl(sl)
 
             while (true) {
                 console.addCompleter { s, i, list ->
@@ -42,7 +43,7 @@ object Main {
                         } else i
                     } else i
                 }
-                grepl.handle(console.readLine("Lice >"), sl)
+                grepl.handle(console.readLine("\nLice >"))
             }
 
         } else {
