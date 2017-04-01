@@ -47,7 +47,7 @@ class GRepl(val symbolList: SymbolList = SymbolList(true)) {
                 |pst: print the most recent stack trace
                 |help: print this doc
                 |version: check the version
-                """.stripMargin()
+                """.trimMargin()
 					.println()
 			ValueNode(Unit, ln)
 		})
@@ -55,7 +55,7 @@ class GRepl(val symbolList: SymbolList = SymbolList(true)) {
 		symbolList.defineFunction("version", { ln, ls ->
 			"""Lice language interpreter $VERSION_CODE
                 |GRepl $Version
-            """.stripMargin().println()
+            """.trimMargin().println()
 
 			ValueNode(Unit, ln)
 		})
@@ -64,10 +64,10 @@ class GRepl(val symbolList: SymbolList = SymbolList(true)) {
 	fun handle(
 			str: String) {
 		try {
-			val ast = Ast(mapAst(
+			val ast = mapAst(
 					node = buildNode(str),
 					symbolList = symbolList)
-			).root
+
 			ast.eval()
 		} catch (e: Throwable) {
 			stackTrace.push(e)
@@ -83,7 +83,7 @@ class GRepl(val symbolList: SymbolList = SymbolList(true)) {
             |see: https://github.com/ice1000/lice
 
             |for help please input: help
-        """.stripMargin()
+        """.trimMargin()
 
 	}
 }
