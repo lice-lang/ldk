@@ -23,7 +23,7 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 	val stackTrace: Deque<Throwable> = LinkedList()
 
 	init {
-		symbolList.defineFunction("exit", { ln, ls ->
+		symbolList.defineFunction("exit", { ln, _ ->
 			"Good bye!".println()
 			System.exit(0)
 			ValueNode(Unit, ln)
