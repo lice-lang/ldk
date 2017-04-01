@@ -1,6 +1,5 @@
 package org.lice.grepl
 
-import org.lice.compiler.model.Ast
 import org.lice.compiler.model.ValueNode
 import org.lice.compiler.parse.buildNode
 import org.lice.compiler.parse.mapAst
@@ -9,8 +8,6 @@ import org.lice.compiler.util.println
 import org.lice.compiler.util.serr
 import org.lice.repl.VERSION_CODE
 import java.util.*
-import javax.swing.JFrame
-import javax.swing.WindowConstants
 
 /**
  * Created by glavo on 17-3-26.
@@ -19,7 +16,9 @@ import javax.swing.WindowConstants
  * @version 1.0.0
  */
 
-class GRepl(val symbolList: SymbolList = SymbolList(true)) {
+class GRepl
+@JvmOverloads
+constructor(val symbolList: SymbolList = SymbolList(true)) {
 
 	val stackTrace: Deque<Throwable> = LinkedList()
 
@@ -30,14 +29,14 @@ class GRepl(val symbolList: SymbolList = SymbolList(true)) {
 			ValueNode(Unit, ln)
 		})
 
-		symbolList.defineFunction("pst", { ln, ls ->
+		symbolList.defineFunction("pst", { ln, _ ->
 			if (stackTrace.isNotEmpty()) stackTrace.peek().printStackTrace()
 			else "No stack trace.\n".println()
 
 			ValueNode(Unit, ln)
 		})
 
-		symbolList.defineFunction("help", { ln, ls ->
+		symbolList.defineFunction("help", { ln, _ ->
 			"""
                 |This is the repl for lice language.
 
@@ -52,10 +51,10 @@ class GRepl(val symbolList: SymbolList = SymbolList(true)) {
 			ValueNode(Unit, ln)
 		})
 
-		symbolList.defineFunction("version", { ln, ls ->
+		symbolList.defineFunction("version", { ln, _ ->
 			"""Lice language interpreter $VERSION_CODE
                 |GRepl $Version
-            """.trimMargin().println()
+""".trimMargin().println()
 
 			ValueNode(Unit, ln)
 		})
@@ -83,7 +82,7 @@ class GRepl(val symbolList: SymbolList = SymbolList(true)) {
             |see: https://github.com/ice1000/lice
 
             |for help please input: help
-        """.trimMargin()
+""".trimMargin()
 
 	}
 }

@@ -1,3 +1,5 @@
+@file:Suppress("NOTHING_TO_INLINE")
+
 package org.lice.grepl
 
 import org.lice.compiler.util.SymbolList
@@ -9,8 +11,6 @@ import java.util.*
  * @author Glavo
  * @version 1.0.0
  */
-
-@JvmOverloads
 
 inline fun SymbolList.getSymbolList(): MutableList<String> {
 	val list: MutableList<String> = ArrayList()

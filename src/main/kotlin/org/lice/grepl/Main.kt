@@ -1,15 +1,11 @@
 package org.lice.grepl
 
 import jline.console.ConsoleReader
-import jline.console.completer.StringsCompleter
 import org.lice.compiler.util.SymbolList
 import org.lice.compiler.util.println
 import org.lice.compiler.util.serr
-import org.lice.grepl.stripMargin
 import org.lice.repl.Main
-import org.lice.repl.Repl
 import java.io.File
-import java.util.*
 
 /**
  * Created by glavo on 17-3-26.
