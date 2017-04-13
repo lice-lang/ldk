@@ -23,7 +23,7 @@ object Main {
 
 		if (args.isEmpty()) {
 			val sl = SymbolList(true)
-			val grepl = GRepl(sl)
+			val gRepl = GRepl(sl)
 
 			while (true) {
 				console.addCompleter { s, i, list ->
@@ -38,7 +38,7 @@ object Main {
 						} else i
 					} else i
 				}
-				grepl.handle(console.readLine("\nLice > "))
+				gRepl.handle(console.readLine("\nLice > "))
 			}
 
 		} else Main.interpret(File(args[0]).apply {

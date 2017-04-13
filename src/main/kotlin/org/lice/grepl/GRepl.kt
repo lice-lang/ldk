@@ -1,6 +1,6 @@
 package org.lice.grepl
 
-import org.lice.compiler.model.ValueNode
+import org.lice.compiler.model.EmptyNode
 import org.lice.compiler.parse.buildNode
 import org.lice.compiler.parse.mapAst
 import org.lice.compiler.util.SymbolList
@@ -26,14 +26,14 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 		symbolList.defineFunction("exit", { ln, _ ->
 			"Good bye! :)".println()
 			System.exit(0)
-			ValueNode(Unit, ln)
+			EmptyNode(ln)
 		})
 
 		symbolList.defineFunction("pst", { ln, _ ->
 			if (stackTrace.isNotEmpty()) stackTrace.peek().printStackTrace()
 			else "No stack trace.\n".println()
 
-			ValueNode(Unit, ln)
+			EmptyNode(ln)
 		})
 
 		symbolList.defineFunction("help", { ln, _ ->
@@ -47,7 +47,7 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 		|version: check the version"""
 					.trimMargin()
 					.println()
-			ValueNode(Unit, ln)
+			EmptyNode(ln)
 		})
 
 		symbolList.defineFunction("version", { ln, _ ->
@@ -56,7 +56,7 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 					.trimMargin()
 					.println()
 
-			ValueNode(Unit, ln)
+			EmptyNode(ln)
 		})
 	}
 
@@ -76,8 +76,8 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 
 	companion object {
 
-		val Version: String = "v1.0.1 beta"
-		val message: String = """Glavo's Lice language repl $Version
+		val Version = "v1.0.1 beta"
+		val message = """Glavo's Lice language repl $Version
 		|see: https://github.com/lice-lang/lice
 
 		|for help please input: help
