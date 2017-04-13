@@ -25,6 +25,7 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 	init {
 		symbolList.defineFunction("exit", { ln, _ ->
 			"Good bye! :)".println()
+
 			System.exit(0)
 			EmptyNode(ln)
 		})

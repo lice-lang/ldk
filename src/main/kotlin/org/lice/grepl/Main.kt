@@ -17,7 +17,7 @@ import java.io.File
 object Main {
 	@JvmStatic
 	fun main(args: Array<String>) {
-		val console: ConsoleReader = ConsoleReader()
+		val console = ConsoleReader()
 
 		GRepl.message.println()
 
