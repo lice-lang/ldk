@@ -24,7 +24,7 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 
 	init {
 		symbolList.defineFunction("exit", { ln, _ ->
-			"Good bye!".println()
+			"Good bye! :)".println()
 			System.exit(0)
 			ValueNode(Unit, ln)
 		})
@@ -79,7 +79,7 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 
 		val Version: String = "v1.0.0 beta"
 		val message: String = """Glavo's Lice language repl $Version
-            |see: https://github.com/ice1000/lice
+            |see: https://github.com/lice-lang/lice
 
             |for help please input: help
 """.trimMargin()
