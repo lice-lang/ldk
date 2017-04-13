@@ -37,31 +37,30 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 		})
 
 		symbolList.defineFunction("help", { ln, _ ->
-			"""
-                |This is the repl for lice language.
+			"""This is the repl for lice language.
 
-                |You have 4 special commands which you cannot use in the language but the repl:
+		|You have 4 special commands which you cannot use in the language but the repl:
 
-                |exit: exit the repl
-                |pst: print the most recent stack trace
-                |help: print this doc
-                |version: check the version
-                """.trimMargin()
+		|exit: exit the repl
+		|pst: print the most recent stack trace
+		|help: print this doc
+		|version: check the version"""
+					.trimMargin()
 					.println()
 			ValueNode(Unit, ln)
 		})
 
 		symbolList.defineFunction("version", { ln, _ ->
 			"""Lice language interpreter $VERSION_CODE
-                |GRepl $Version
-""".trimMargin().println()
+		|GRepl $Version"""
+					.trimMargin()
+					.println()
 
 			ValueNode(Unit, ln)
 		})
 	}
 
-	fun handle(
-			str: String) {
+	fun handle(str: String) {
 		try {
 			val ast = mapAst(
 					node = buildNode(str),
@@ -77,11 +76,11 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 
 	companion object {
 
-		val Version: String = "v1.0.0 beta"
+		val Version: String = "v1.0.1 beta"
 		val message: String = """Glavo's Lice language repl $Version
-            |see: https://github.com/lice-lang/lice
+		|see: https://github.com/lice-lang/lice
 
-            |for help please input: help
+		|for help please input: help
 """.trimMargin()
 
 	}

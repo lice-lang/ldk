@@ -19,7 +19,6 @@ object Main {
 	fun main(args: Array<String>) {
 		val console: ConsoleReader = ConsoleReader()
 
-
 		GRepl.message.println()
 
 		if (args.isEmpty()) {
@@ -29,7 +28,7 @@ object Main {
 			while (true) {
 				console.addCompleter { s, i, list ->
 					if (s.isNotEmpty()) {
-						val arr = s.split(' ', '(', ')', ',')
+						val arr = s.split(' ', '(', ')', ',', '）', '（', '，')
 						if (arr.isNotEmpty()) {
 							list.addAll(sl.getSymbolList().filter {
 								it.startsWith(arr.last())
@@ -39,13 +38,11 @@ object Main {
 						} else i
 					} else i
 				}
-				grepl.handle(console.readLine("\nLice >"))
+				grepl.handle(console.readLine("\nLice > "))
 			}
 
-		} else {
-			Main.interpret(File(args[0]).apply {
-				if (!exists()) serr("file not found: ${args[0]}")
-			})
-		}
+		} else Main.interpret(File(args[0]).apply {
+			if (!exists()) serr("file not found: ${args[0]}")
+		})
 	}
 }
