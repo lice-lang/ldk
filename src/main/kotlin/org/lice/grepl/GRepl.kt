@@ -61,25 +61,19 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 		})
 	}
 
-	fun handle(str: String) {
-		try {
-			val ast = mapAst(
-					node = buildNode(str),
-					symbolList = symbolList)
-
-			ast.eval()
-		} catch (e: Throwable) {
-			stackTrace.push(e)
-			serr(e.message ?: "")
-		}
-
+	fun handle(str: String) = try {
+		mapAst(buildNode(str), symbolList).eval()
+	} catch (e: Throwable) {
+		stackTrace.push(e)
+		serr(e.message ?: "")
 	}
 
-	companion object {
+	companion object HelpMessage {
 
 		val Version = "v1.0.1 beta"
 		val message = """Glavo's Lice language repl $Version
-		|see: https://github.com/lice-lang/lice
+		|see: https://github.com/lice-lang/lice-repl
+		|see also: https://github.com/lice-lang/lice
 
 		|for help please input: help
 """.trimMargin()

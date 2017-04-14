@@ -11,7 +11,8 @@ import java.io.File
  * Created by glavo on 17-3-26.
  *
  * @author Glavo
- * @version 1.0.0
+ * @author ice1000
+ * @version 1.0.1
  */
 
 object Main {
