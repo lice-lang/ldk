@@ -70,7 +70,7 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 
 	companion object HelpMessage {
 
-		val Version = "v1.0.1 beta"
+		val Version = "v1.1"
 		val message = """Glavo's Lice language repl $Version
 		|see: https://github.com/lice-lang/lice-repl
 		|see also: https://github.com/lice-lang/lice
