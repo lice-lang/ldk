@@ -3,9 +3,9 @@ package org.lice.grepl
 import org.lice.compiler.model.EmptyNode
 import org.lice.compiler.parse.buildNode
 import org.lice.compiler.parse.mapAst
-import org.lice.core.SymbolList
 import org.lice.compiler.util.println
 import org.lice.compiler.util.serr
+import org.lice.core.SymbolList
 import org.lice.repl.VERSION_CODE
 import java.util.*
 
@@ -23,21 +23,17 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 	val stackTrace: Deque<Throwable> = LinkedList()
 
 	init {
-		symbolList.defineFunction("exit", { ln, _ ->
+		symbolList.provideFunction("exit", {
 			"Good bye! :)".println()
-
 			System.exit(0)
-			EmptyNode(ln)
 		})
 
-		symbolList.defineFunction("pst", { ln, _ ->
+		symbolList.provideFunction("pst", {
 			if (stackTrace.isNotEmpty()) stackTrace.peek().printStackTrace()
 			else "No stack trace.\n".println()
-
-			EmptyNode(ln)
 		})
 
-		symbolList.defineFunction("help", { ln, _ ->
+		symbolList.provideFunction("help", {
 			"""This is the repl for lice language.
 
 		|You have 4 special commands which you cannot use in the language but the repl:
@@ -48,16 +44,13 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 		|version: check the version"""
 					.trimMargin()
 					.println()
-			EmptyNode(ln)
 		})
 
-		symbolList.defineFunction("version", { ln, _ ->
+		symbolList.provideFunction("version", {
 			"""Lice language interpreter $VERSION_CODE
 		|GRepl $Version"""
 					.trimMargin()
 					.println()
-
-			EmptyNode(ln)
 		})
 	}
 
@@ -70,7 +63,7 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 
 	companion object HelpMessage {
 
-		val Version = "v1.1"
+		val Version = "v1.2"
 		val message = """Glavo's Lice language repl $Version
 		|see: https://github.com/lice-lang/lice-repl
 		|see also: https://github.com/lice-lang/lice
