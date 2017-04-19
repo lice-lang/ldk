@@ -9,7 +9,7 @@ AppVeyor|[![Build status](https://ci.appveyor.com/api/projects/status/2u8x5i2ctn
 
 Command line repl for Lice language.
 
-Supporting Lice 2.7!
+Supporting Lice 3.0-EAP!
 
 ## Features
 

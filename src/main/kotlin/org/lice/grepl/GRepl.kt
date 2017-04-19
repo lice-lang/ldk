@@ -1,6 +1,5 @@
 package org.lice.grepl
 
-import org.lice.compiler.model.EmptyNode
 import org.lice.compiler.parse.buildNode
 import org.lice.compiler.parse.mapAst
 import org.lice.compiler.util.println
