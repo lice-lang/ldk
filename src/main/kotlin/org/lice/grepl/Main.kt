@@ -1,7 +1,7 @@
 package org.lice.grepl
 
 import jline.console.ConsoleReader
-import org.lice.compiler.util.SymbolList
+import org.lice.core.SymbolList
 import org.lice.compiler.util.println
 import org.lice.compiler.util.serr
 import org.lice.repl.Main

@@ -2,7 +2,7 @@
 
 package org.lice.grepl
 
-import org.lice.compiler.util.SymbolList
+import org.lice.core.SymbolList
 
 /**
  * Created by glavo on 17-3-26.
