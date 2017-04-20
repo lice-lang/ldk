@@ -1,10 +1,11 @@
 package org.lice.grepl
 
 import jline.console.ConsoleReader
-import org.lice.core.SymbolList
 import org.lice.compiler.util.println
-import org.lice.compiler.util.serr
+import org.lice.core.SymbolList
+import org.lice.lang.Echoer
 import org.lice.repl.Main
+import org.lice.repl.Repl
 import java.io.File
 
 /**
@@ -16,6 +17,8 @@ import java.io.File
  */
 
 object Main {
+	val listOfSplitters = charArrayOf(' ', '(', ')', ',', '）', '（', '，')
+
 	@JvmStatic
 	fun main(args: Array<String>) {
 		val console = ConsoleReader()
@@ -29,21 +32,22 @@ object Main {
 			while (true) {
 				console.addCompleter { s, i, list ->
 					if (s.isNotEmpty()) {
-						val arr = s.split(' ', '(', ')', ',', '）', '（', '，')
+//						val str = s.dropWhile { it in listOfSplitters }
+						val arr = s.split(*listOfSplitters)
 						if (arr.isNotEmpty()) {
-							list.addAll(sl.getSymbolList().filter {
-								it.startsWith(arr.last())
-							})
+							list.addAll(sl
+									.getSymbolList()
+									.filter { it.startsWith(arr.last()) })
 
 							i - arr.last().length
 						} else i
 					} else i
 				}
-				gRepl.handle(console.readLine("\nLice > "))
+				gRepl.handle(console.readLine(Repl.HINT))
 			}
 
 		} else Main.interpret(File(args[0]).apply {
-			if (!exists()) serr("file not found: ${args[0]}")
+			if (!exists()) Echoer.echoErr("file not found: ${args[0]}")
 		})
 	}
 }
