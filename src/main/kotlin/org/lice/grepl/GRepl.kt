@@ -3,7 +3,6 @@ package org.lice.grepl
 import org.lice.compiler.parse.buildNode
 import org.lice.compiler.parse.mapAst
 import org.lice.compiler.util.println
-import org.lice.compiler.util.serr
 import org.lice.core.SymbolList
 import org.lice.lang.Echoer
 import org.lice.repl.VERSION_CODE
@@ -55,7 +54,7 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 		mapAst(buildNode(str), symbolList).eval()
 	} catch (e: Throwable) {
 		stackTrace.push(e)
-		serr(e.message ?: "")
+		Echoer.echolnErr(e.message ?: "")
 	}
 
 	companion object HelpMessage {
