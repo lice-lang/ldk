@@ -36,14 +36,17 @@ jar {
 
 allprojects {
 	repositories {
-		// ...
 		maven { url 'https://jitpack.io' }
+		maven { url "http://dl.bintray.com/jetbrains/spek" }
 	}
 }
 
 dependencies {
 	compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-	compile 'com.github.lice-lang:lice:v3.1'
+	compile 'com.github.lice-lang:lice:v3.0.5'
 	testCompile group: 'junit', name: 'junit', version: '4.12'
+	testCompile 'org.jetbrains.spek:spek-api:1.1.0'
+	testCompile 'org.junit.platform:junit-platform-runner:1.0.0-M4'
+	testCompile 'org.jetbrains.spek:spek-junit-platform-engine:1.1.0'
 	compile 'jline:jline:2.14.3'
 }

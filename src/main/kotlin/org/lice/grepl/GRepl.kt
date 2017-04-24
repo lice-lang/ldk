@@ -64,6 +64,7 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 			|see: https://github.com/lice-lang/lice-repl
 			|see also: https://github.com/lice-lang/lice
 
+			|剑未佩妥，出门已是江湖。千帆过尽，归来仍是少年。
 			|for help please input: help""".trimMargin()
 	}
 }
