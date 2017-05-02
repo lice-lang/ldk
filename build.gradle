@@ -30,8 +30,18 @@ sourceSets {
 
 jar {
 	manifest {
-		attributes 'Main-Class': 'org.lice.grepl'
+		attributes 'Main-Class': 'org.lice.grepl.Main'
 	}
+	from {
+		configurations
+				.extraLibs
+				.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+}
+
+
+configurations {
+	extraLibs
 }
 
 allprojects {
@@ -42,11 +52,14 @@ allprojects {
 }
 
 dependencies {
-	compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-	compile 'com.github.lice-lang:lice:v3.1'
+	extraLibs "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+	extraLibs 'com.github.lice-lang:lice:v3.1.1'
+	extraLibs 'jline:jline:2.14.3'
+
+	configurations.compile.extendsFrom(configurations.extraLibs)
+
 	testCompile group: 'junit', name: 'junit', version: '4.12'
 	testCompile 'org.jetbrains.spek:spek-api:1.1.0'
 	testCompile 'org.junit.platform:junit-platform-runner:1.0.0-M4'
 	testCompile 'org.jetbrains.spek:spek-junit-platform-engine:1.1.0'
-	compile 'jline:jline:2.14.3'
 }
