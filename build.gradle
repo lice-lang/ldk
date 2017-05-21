@@ -2,7 +2,8 @@ group 'org.lice'
 version '1.2'
 
 buildscript {
-	ext.kotlin_version = '1.1.2-2'
+	ext.kotlin_version = '1.1.2-3'
+	ext.spek_version = '1.1.1'
 
 	repositories {
 		mavenCentral()
@@ -59,7 +60,7 @@ dependencies {
 	configurations.compile.extendsFrom(configurations.extraLibs)
 
 	testCompile group: 'junit', name: 'junit', version: '4.12'
-	testCompile 'org.jetbrains.spek:spek-api:1.1.0'
+	testCompile "org.jetbrains.spek:spek-api:$spek_version"
 	testCompile 'org.junit.platform:junit-platform-runner:1.0.0-M4'
-	testCompile 'org.jetbrains.spek:spek-junit-platform-engine:1.1.0'
+	testCompile "org.jetbrains.spek:spek-junit-platform-engine:$spek_version"
 }
