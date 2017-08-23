@@ -65,3 +65,9 @@ dependencies {
 	testCompile 'org.junit.platform:junit-platform-runner:1.0.0-RC2'
 	testCompile "org.jetbrains.spek:spek-junit-platform-engine:$spek_version"
 }
+
+task fatJar(type: Jar) {
+	baseName = project.name + '-all'
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+	with jar
+}
