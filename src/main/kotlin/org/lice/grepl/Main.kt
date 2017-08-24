@@ -28,24 +28,10 @@ object Main {
 		GRepl.message.println()
 
 		if (args.isEmpty()) {
-			val sl = SymbolList(true)
-			val gRepl = GRepl(sl)
-
-			console.addCompleter { s, i, list ->
-				if (s.isNotEmpty()) {
-					val arr = s.split(*listOfSplitters)
-					if (arr.isNotEmpty()) {
-						list.addAll(sl
-								.getSymbolList()
-								.filter { it.startsWith(arr.last()) })
-
-						i - arr.last().length
-					} else i
-				} else i
-			}
+			val gRepl = GRepl(SymbolList(true))
+			console.addCompleter(gRepl.completer)
 
 			while (true) {
-
 				gRepl.handle(console.readLine(Repl.HINT))
 			}
 

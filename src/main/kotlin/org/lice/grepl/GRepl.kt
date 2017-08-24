@@ -2,6 +2,7 @@
 
 package org.lice.grepl
 
+import jline.console.completer.Completer
 import org.lice.compiler.parse.buildNode
 import org.lice.compiler.parse.mapAst
 import org.lice.compiler.util.println
@@ -51,6 +52,21 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 			|GRepl $Version""".trimMargin()
 		}
 	}
+
+	val completer: Completer
+		get() = Completer { s, i, list ->
+			if (s.isNotEmpty()) {
+				val arr = s.split(*listOfSplitters)
+				if (arr.isNotEmpty()) {
+					list.addAll(symbolList
+							.getSymbolList()
+							.filter { it.startsWith(arr.last()) })
+
+					i - arr.last().length
+				} else i
+			} else i
+		}
+
 
 	fun handle(str: String) = try {
 		mapAst(buildNode(str), symbolList).eval()
