@@ -2,6 +2,7 @@
 
 package org.lice.grepl
 
+import jline.console.completer.Completer
 import org.lice.core.SymbolList
 
 /**
@@ -15,4 +16,6 @@ import org.lice.core.SymbolList
 inline fun SymbolList.getSymbolList(): MutableList<String> {
 	return functions.keys.toMutableList()
 }
+
+val listOfSplitters = charArrayOf(' ', '(', ')', ',', '）', '（', '，')
 

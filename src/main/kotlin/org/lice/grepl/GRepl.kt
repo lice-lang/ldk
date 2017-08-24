@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanPrivate")
+
 package org.lice.grepl
 
 import org.lice.compiler.parse.buildNode
@@ -22,18 +24,18 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 	val stackTrace: Deque<Throwable> = LinkedList()
 
 	init {
-		symbolList.provideFunction("exit", {
+		symbolList.provideFunction("exit") {
 			"Good bye! :)".println()
 			System.exit(0)
-		})
+		}
 
-		symbolList.provideFunction("pst", {
+		symbolList.provideFunction("pst") {
 			if (stackTrace.isNotEmpty()) stackTrace.peek().printStackTrace()
 			else Echoer.echoErr("No stack trace.\n")
 			null
-		})
+		}
 
-		symbolList.provideFunction("help", {
+		symbolList.provideFunction("help") {
 			"""This is the repl for lice language.
 
 			|You have 4 special commands which you cannot use in the language but the repl:
@@ -42,12 +44,12 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 			|pst: print the most recent stack trace
 			|help: print this doc
 			|version: check the version""".trimMargin()
-		})
+		}
 
-		symbolList.provideFunction("version", {
+		symbolList.provideFunction("version") {
 			"""Lice language interpreter $VERSION_CODE
 			|GRepl $Version""".trimMargin()
-		})
+		}
 	}
 
 	fun handle(str: String) = try {
@@ -59,7 +61,7 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 
 	companion object HelpMessage {
 
-		val Version = "v1.2"
+		val Version = "v1.3"
 		val message = """Glavo's Lice language repl $Version
 			|see: https://github.com/lice-lang/lice-repl
 			|see also: https://github.com/lice-lang/lice

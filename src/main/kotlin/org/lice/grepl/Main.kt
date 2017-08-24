@@ -17,10 +17,12 @@ import java.io.File
  */
 
 object Main {
-	val listOfSplitters = charArrayOf(' ', '(', ')', ',', '）', '（', '，')
+
 
 	@JvmStatic
 	fun main(args: Array<String>) {
+		Echoer.repl = true
+
 		val console = ConsoleReader()
 
 		GRepl.message.println()
@@ -29,20 +31,21 @@ object Main {
 			val sl = SymbolList(true)
 			val gRepl = GRepl(sl)
 
-			while (true) {
-				console.addCompleter { s, i, list ->
-					if (s.isNotEmpty()) {
-//						val str = s.dropWhile { it in listOfSplitters }
-						val arr = s.split(*listOfSplitters)
-						if (arr.isNotEmpty()) {
-							list.addAll(sl
-									.getSymbolList()
-									.filter { it.startsWith(arr.last()) })
+			console.addCompleter { s, i, list ->
+				if (s.isNotEmpty()) {
+					val arr = s.split(*listOfSplitters)
+					if (arr.isNotEmpty()) {
+						list.addAll(sl
+								.getSymbolList()
+								.filter { it.startsWith(arr.last()) })
 
-							i - arr.last().length
-						} else i
+						i - arr.last().length
 					} else i
-				}
+				} else i
+			}
+
+			while (true) {
+
 				gRepl.handle(console.readLine(Repl.HINT))
 			}
 
