@@ -56,6 +56,7 @@ allprojects {
 dependencies {
 	extraLibs "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 	extraLibs 'com.github.lice-lang:lice:v3.1.3-2'
+	extraLibs 'commons-cli:commons-cli:1.4'
 	extraLibs 'jline:jline:2.14.5'
 
 	configurations.compile.extendsFrom(configurations.extraLibs)
@@ -64,5 +65,7 @@ dependencies {
 	testCompile "org.jetbrains.spek:spek-api:$spek_version"
 	testCompile 'org.junit.platform:junit-platform-runner:1.0.0-RC2'
 	testCompile "org.jetbrains.spek:spek-junit-platform-engine:$spek_version"
+
+
 }
 

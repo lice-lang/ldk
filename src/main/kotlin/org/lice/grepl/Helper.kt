@@ -25,11 +25,16 @@ enum class OS {
 				"\u001b[32;1m$str\u001b[0m"
 
 		override fun purple(str: String): String =
-			"\u001b[35m$str\u001b[0m"
+				"\u001b[35m$str\u001b[0m"
 
 		override fun blue(str: String): String =
-			"\u001b[34;1m$str\u001b[0m"
+				"\u001b[34;1m$str\u001b[0m"
 
+		override fun underline(str: String): String =
+				"\u001b[4m$str\u001b[0m"
+
+		override fun red(str: String): String =
+				"\u001b[31m$str\u001b[0m"
 	},
 	Other;
 
@@ -38,6 +43,10 @@ enum class OS {
 	open fun purple(str: String): String = str
 
 	open fun blue(str: String): String = str
+
+	open fun underline(str: String): String = str
+
+	open fun red(str: String): String = str
 }
 
 val listOfSplitters = charArrayOf(' ', '(', ')', ',', '）', '（', '，')
@@ -58,6 +67,15 @@ val String.blue: String
 
 val String.purple: String
 	get() = system.purple(this)
+
+val String.red: String
+	get() = system.red(this)
+
+
+
+val String.underline: String
+	get() = system.underline(this)
+
 
 
 
