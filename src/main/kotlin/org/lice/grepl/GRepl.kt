@@ -64,33 +64,33 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 				val override = symbolList.isFunctionDefined(name)
 				defFunc(name, params, block, body)
 				return@defineFunction ValueNode(DefineResult(
-						"${if (override) "override".green else ""} ${"defined".green} $name"))
+						"${if (override) "override".green else ""}${"defined".green} $name"))
 			}
 		}
 
-		symbolList.provideFunction("exit") {
+		symbolList.provideFunction(":exit") {
 			"Good bye! :)".println()
 			System.exit(0)
 		}
 
-		symbolList.provideFunction("pst") {
+		symbolList.provideFunction(":pst") {
 			if (stackTrace.isNotEmpty()) stackTrace.peek().printStackTrace()
 			else Echoer.echoErr("No stack trace.\n")
 			null
 		}
 
-		symbolList.provideFunction("help") {
+		symbolList.provideFunction(":help") {
 			"""This is the repl for lice language.
 
 You have 4 special commands which you cannot use in the language but the repl:
 
-exit: exit the repl
-pst: print the most recent stack trace
-help: print this doc
-version: check the version"""
+:exit: exit the repl
+:pst: print the most recent stack trace
+:help: print this doc
+:version: check the version"""
 		}
 
-		symbolList.provideFunction("version") {
+		symbolList.provideFunction(":version") {
 			"""Lice language interpreter $VERSION
 			|GRepl $Version""".trimMargin()
 		}
@@ -145,6 +145,6 @@ version: check the version"""
 see: ${"https://github.com/lice-lang/lice-repl".underline}
 see also: ${"https://github.com/lice-lang/lice".underline}
 
-Type in expressions for evaluation. Or try help."""
+Type in expressions for evaluation. Or try :help."""
 	}
 }
