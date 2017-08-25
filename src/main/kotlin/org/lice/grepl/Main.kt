@@ -1,11 +1,10 @@
 package org.lice.grepl
 
 import jline.console.ConsoleReader
-import org.lice.compiler.util.println
+import org.fusesource.jansi.AnsiConsole
 import org.lice.core.SymbolList
 import org.lice.lang.Echoer
 import org.lice.repl.Main
-import org.lice.repl.Repl
 import java.io.File
 
 /**
@@ -21,18 +20,26 @@ object Main {
 
 	@JvmStatic
 	fun main(args: Array<String>) {
-		Echoer.repl = true
-
+		AnsiConsole.systemInstall()
 		val console = ConsoleReader()
 
-		GRepl.message.println()
-
 		if (args.isEmpty()) {
-			val gRepl = GRepl(SymbolList(true))
-			console.addCompleter(gRepl.completer)
+			val repl = GRepl(SymbolList(true))
+			console.addCompleter(repl.completer)
+
+			println(GRepl.message)
 
 			while (true) {
-				gRepl.handle(console.readLine(Repl.HINT))
+				val res = repl.handle(console.readLine((repl.hint + " ").purple))
+
+				if (res != null && res.o  != Unit) {
+					val n = "res${repl.count++}"
+
+					repl.symbolList.provideFunction(n) { res.o }
+
+					println("${n.blue}: ${res.type.name.green} = ${res.o.toString()}")
+				}
+				println()
 			}
 
 		} else Main.interpret(File(args[0]).apply {

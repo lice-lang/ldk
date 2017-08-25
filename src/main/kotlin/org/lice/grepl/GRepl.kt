@@ -3,6 +3,7 @@
 package org.lice.grepl
 
 import jline.console.completer.Completer
+import org.lice.compiler.model.Value
 import org.lice.compiler.parse.buildNode
 import org.lice.compiler.parse.mapAst
 import org.lice.compiler.util.println
@@ -23,6 +24,10 @@ class GRepl
 constructor(val symbolList: SymbolList = SymbolList(true)) {
 
 	val stackTrace: Deque<Throwable> = LinkedList()
+
+	var hint: String = "lice>"
+
+	var count: Int = 0
 
 	init {
 		symbolList.provideFunction("exit") {
@@ -51,12 +56,25 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 			"""Lice language interpreter $VERSION_CODE
 			|GRepl $Version""".trimMargin()
 		}
+
+		symbolList.provideFunction("debug") {
+			throw UnsupportedOperationException()
+		}
+
+		symbolList.provideFunction("print") { ls ->
+			print(ls.joinToString(" "))
+		}
+
+		symbolList.provideFunction("println") { ls ->
+			println(ls.joinToString(" "))
+		}
+
 	}
 
 	val completer: Completer
 		get() = Completer { s, i, list ->
 			if (s.isNotEmpty()) {
-				val arr = s.split(*listOfSplitters)
+				val arr = s.substring(0, i).split(*listOfSplitters)
 				if (arr.isNotEmpty()) {
 					list.addAll(symbolList
 							.getSymbolList()
@@ -68,12 +86,15 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 		}
 
 
-	fun handle(str: String) = try {
-		mapAst(buildNode(str), symbolList).eval()
-	} catch (e: Throwable) {
-		stackTrace.push(e)
-		Echoer.echolnErr(e.message ?: "")
-	}
+	fun handle(str: String): Value? =
+			try {
+				mapAst(buildNode(str), symbolList).eval()
+			} catch (e: Throwable) {
+				stackTrace.push(e)
+				System.err.println(e.message ?: "")
+				System.err.println()
+				null
+			}
 
 	companion object HelpMessage {
 
