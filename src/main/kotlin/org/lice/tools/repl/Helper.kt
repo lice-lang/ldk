@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-package org.lice.tools
+package org.lice.tools.repl
 
 import org.lice.core.SymbolList
 
