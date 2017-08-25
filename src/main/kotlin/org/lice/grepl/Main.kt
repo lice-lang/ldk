@@ -138,6 +138,7 @@ object Main {
 				} while (!scanf(s, stage))
 			} catch (s: StageNotMatchException) {
 				System.err.println(s.message)
+				println()
 			 	continue@loop
 			} finally {
 				stage.clear()

@@ -64,7 +64,7 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 				val override = symbolList.isFunctionDefined(name)
 				defFunc(name, params, block, body)
 				return@defineFunction ValueNode(DefineResult(
-						"${if (override) "override".green else ""}${"defined".green} $name"))
+						"${if (override) "override ".green else ""}${"defined".green} $name"))
 			}
 		}
 
@@ -140,11 +140,12 @@ You have 4 special commands which you cannot use in the language but the repl:
 
 	companion object HelpMessage {
 
-		val Version = "v1.3"
-		val message = """Welcome to Lice REPL $Version  (Lice $Version, Java ${System.getProperty("java.version")})
+		val Version = "v2.0"
+		val message = """Welcome to Lice REPL $Version  (Lice $VERSION, Java ${System.getProperty("java.version")})
 see: ${"https://github.com/lice-lang/lice-repl".underline}
 see also: ${"https://github.com/lice-lang/lice".underline}
 
-Type in expressions for evaluation. Or try :help."""
+Type in expressions for evaluation. Or try :help.
+"""
 	}
 }
