@@ -7,6 +7,6 @@ build_script:
 #
 
 artifacts:
-  - path: 'build\libs\lice-repl-1.1.jar'
+  - path: 'build\libs\ldk-1.0.0.jar'
     name: lice
 #
