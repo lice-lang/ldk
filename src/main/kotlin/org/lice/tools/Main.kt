@@ -1,4 +1,4 @@
-package org.lice.grepl
+package org.lice.tools
 
 import jline.console.ConsoleReader
 import org.apache.commons.cli.DefaultParser

@@ -1,4 +1,4 @@
-package org.lice.grepl
+package org.lice.tools
 
 import org.jetbrains.spek.api.Spek
 import org.jetbrains.spek.api.dsl.given

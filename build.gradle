@@ -32,7 +32,7 @@ sourceSets {
 
 jar {
 	manifest {
-		attributes 'Main-Class': 'org.lice.grepl.Main'
+		attributes 'Main-Class': 'org.lice.tools.Main'
 	}
 	from {
 		configurations

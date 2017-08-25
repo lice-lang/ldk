@@ -1,6 +1,6 @@
 @file:Suppress("MemberVisibilityCanPrivate")
 
-package org.lice.grepl
+package org.lice.tools
 
 import jline.console.completer.Completer
 import org.lice.compiler.parse.buildNode

@@ -1,4 +1,4 @@
-# lice-repl
+# Lice Development Kit
 
 CI|status
 :---|---:
@@ -9,7 +9,7 @@ CodeShip|[![Codeship Status for lice-lang/lice-repl](https://app.codeship.com/pr
 
 [![Dependency Status](https://www.versioneye.com/user/projects/58df675124ef3e003fcb0b0a/badge.svg?style=square)](https://www.versioneye.com/user/projects/58df675124ef3e003fcb0b0a)
 
-Command line repl for Lice language.
+Lice Development Kit.
 
 Supporting Lice 3.0-EAP!
 

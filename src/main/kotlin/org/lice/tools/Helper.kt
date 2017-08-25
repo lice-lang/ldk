@@ -1,10 +1,8 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-package org.lice.grepl
+package org.lice.tools
 
 import org.lice.core.SymbolList
-import org.fusesource.jansi.Ansi.*
-import org.fusesource.jansi.Ansi.Color.*
 
 /**
  * Created by glavo on 17-3-26.
