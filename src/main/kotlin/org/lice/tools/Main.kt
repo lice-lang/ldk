@@ -20,41 +20,44 @@ object Main {
 
 	@JvmStatic
 	fun main(args: Array<String>) {
-		if (args.isEmpty()) GRepl(SymbolList(true)).runRepl()
-		else {
-			val opts = Options()
-			opts.addOption("?", "help", false, "Print this usage message")
-
-			val help = "lice [-options] [file]"
-
-			val formatter = HelpFormatter()
-			val parser = DefaultParser()
-
-			try {
-				val cl = DefaultParser().parse(opts, args)
-				if (cl.hasOption("?")) {
-					formatter.printHelp(help, opts)
-					return@main
-				}
-
-				val arg = cl.args
-				when {
-					arg.isEmpty() -> GRepl(SymbolList(true)).runRepl()
-					args.size > 1 -> throw Exception()
-					else -> interpret(File(arg[0]).apply {
-						if (!exists()) {
-							System.err.println("file not found: ${arg[0]}")
-							return@main
-						}
-					}
-					)
-				}
-
-
-			} catch (t: Throwable) {
-				formatter.printHelp(help, "", opts, "")
-			}
+		if (args.isEmpty()) {
+			GRepl(SymbolList(true)).runRepl()
+			return@main
 		}
+		
+		val opts = Options()
+		opts.addOption("?", "help", false, "Print this usage message")
+
+		val help = "lice [-options] [file]"
+
+		val formatter = HelpFormatter()
+		val parser = DefaultParser()
+
+		try {
+			val cl = DefaultParser().parse(opts, args)
+			if (cl.hasOption("?")) {
+				formatter.printHelp(help, opts)
+				return@main
+			}
+
+			val arg = cl.args
+			when {
+				arg.isEmpty() -> GRepl(SymbolList(true)).runRepl()
+				args.size > 1 -> throw Exception()
+				else -> interpret(File(arg[0]).apply {
+					if (!exists()) {
+						System.err.println("file not found: ${arg[0]}")
+						return@main
+					}
+				}
+				)
+			}
+
+
+		} catch (t: Throwable) {
+			formatter.printHelp(help, "", opts, "")
+		}
+
 	}
 
 
