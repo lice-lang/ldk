@@ -18,13 +18,15 @@ import java.io.File
 
 object Main {
 
+	@Suppress("MemberVisibilityCanPrivate")
 	@JvmStatic
 	fun main(args: Array<String>) {
+
 		if (args.isEmpty()) {
 			GRepl(SymbolList(true)).runRepl()
 			return@main
 		}
-		
+
 		val opts = Options()
 		opts.addOption("?", "help", false, "Print this usage message")
 
