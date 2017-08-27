@@ -11,25 +11,9 @@ IntegerLiteral
 	|	BinaryIntegerLiteral
 	;
 
+
 fragment
 DecimalIntegerLiteral
-	:	DecimalNumeral
-	;
-
-fragment
-HexIntegerLiteral
-	:	HexNumeral
-	;
-
-
-fragment
-BinaryIntegerLiteral
-	:	BinaryNumeral
-	;
-
-
-fragment
-DecimalNumeral
 	:	'0'
 	|	NonZeroDigit (Digits? | Underscores Digits)
 	;
@@ -67,7 +51,7 @@ Underscores
 	;
 
 fragment
-HexNumeral
+HexIntegerLiteral
 	:	'0' [xX] HexDigits
 	;
 
@@ -94,7 +78,7 @@ HexDigitOrUnderscore
 
 
 fragment
-BinaryNumeral
+BinaryIntegerLiteral
 	:	'0' [bB] BinaryDigits
 	;
 
@@ -120,12 +104,6 @@ BinaryDigitOrUnderscore
 	;
 
 FloatingPointLiteral
-	:	DecimalFloatingPointLiteral
-	|	HexadecimalFloatingPointLiteral
-	;
-
-fragment
-DecimalFloatingPointLiteral
 	:	Digits '.' Digits? ExponentPart?
 	|	'.' Digits ExponentPart?
 	|	Digits ExponentPart
@@ -151,26 +129,6 @@ Sign
 	:	[+-]
 	;
 
-fragment
-HexadecimalFloatingPointLiteral
-	:	HexSignificand BinaryExponent
-	;
-
-fragment
-HexSignificand
-	:	HexNumeral '.'?
-	|	'0' [xX] HexDigits? '.' HexDigits
-	;
-
-fragment
-BinaryExponent
-	:	BinaryExponentIndicator SignedInteger
-	;
-
-fragment
-BinaryExponentIndicator
-	:	[pP]
-	;
 
 StringLiteral
 	:	'"' StringCharacters? '"'
@@ -208,5 +166,5 @@ IdentifierPart
     :   ~[\u0000-\u0020\u007f()[\]{},'";]
     ;
 
-WS  :   [ \t\n\r,]   -> skip
+WS  :   [ \t\n\r,，]   -> skip
     ;
