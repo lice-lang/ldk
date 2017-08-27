@@ -182,9 +182,9 @@ You have 4 special commands which you cannot use in the language but the repl:
 	}
 
 	fun runRepl() {
-
-
 		console.addCompleter(this.completer)
+		console.keys.setBlinkMatchingParen(true)
+		console.setParenBlinkTimeout(100)
 
 		println(GRepl.message)
 
