@@ -1,5 +1,5 @@
 group 'org.lice'
-version '1.0.0'
+version '2.0.0'
 
 buildscript {
 	ext.kotlin_version = '1.1.4-2'
@@ -17,6 +17,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
+apply plugin: 'antlr'
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
@@ -27,7 +28,9 @@ repositories {
 
 sourceSets {
 	main.kotlin.srcDirs += 'src/main/kotlin'
+	main.kotlin.srcDirs += 'build/generated-src/antlr/main'
 	main.java.srcDirs += 'src/main/java'
+	main.java.srcDirs += 'build/generated-src/antlr/main'
 }
 
 jar {
@@ -56,8 +59,8 @@ allprojects {
 dependencies {
 	extraLibs "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
 	extraLibs 'com.github.lice-lang:lice:v3.1.3-2'
-	extraLibs 'commons-cli:commons-cli:1.4'
-	extraLibs 'jline:jline:2.14.5'
+	extraLibs 'org.jline:jline:3.3.0'
+	extraLibs 'org.antlr:antlr4-runtime:4.7'
 
 	configurations.compile.extendsFrom(configurations.extraLibs)
 
@@ -66,6 +69,9 @@ dependencies {
 	testCompile 'org.junit.platform:junit-platform-runner:1.0.0-RC2'
 	testCompile "org.jetbrains.spek:spek-junit-platform-engine:$spek_version"
 
-
+	antlr "org.antlr:antlr4:4.7" // use ANTLR version 4
 }
 
+generateGrammarSource {
+	outputDirectory = file("build/generated-src/antlr/main/org/lice/parser")
+}

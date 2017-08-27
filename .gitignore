@@ -34,3 +34,4 @@ local.properties
 
 
 /lib/
+*.tokens
