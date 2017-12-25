@@ -49,11 +49,8 @@ object Main {
 						System.err.println("file not found: ${arg[0]}")
 						return@main
 					}
-				}
-				)
+				})
 			}
-
-
 		} catch (t: Throwable) {
 			formatter.printHelp(help, "", opts, "")
 		}

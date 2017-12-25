@@ -6,6 +6,7 @@ import jline.console.ConsoleReader
 import jline.console.completer.Completer
 import org.lice.VERSION
 import org.lice.core.SymbolList
+import org.lice.model.LazyValueNode
 import org.lice.model.ValueNode
 import org.lice.parse.buildNode
 import org.lice.parse.mapAst
@@ -45,7 +46,7 @@ You have 4 special commands which you cannot use in the language but the repl:
 		symbolList.defineVariable(":version", ValueNode("Lice language interpreter $VERSION\nGRepl $Version"))
 		symbolList.provideFunction("print") { print(it.joinToString(" ")) }
 		symbolList.provideFunction("println") { println(it.joinToString(" ")) }
-		symbolList.provideFunction(":exit") { System.exit(0) }
+		symbolList.defineVariable(":exit", LazyValueNode({ System.exit(0) }))
 	}
 
 	val completer: Completer
@@ -53,10 +54,7 @@ You have 4 special commands which you cannot use in the language but the repl:
 			if (s.isNotEmpty()) {
 				val arr = s.substring(0, i).split(*listOfSplitters)
 				if (arr.isNotEmpty()) {
-					list.addAll(symbolList
-							.symbols
-							.filter { it.startsWith(arr.last()) })
-
+					list.addAll(symbolList.symbols.filter { it.startsWith(arr.last()) })
 					i - arr.last().length
 				} else i
 			} else i
@@ -113,26 +111,17 @@ You have 4 special commands which you cannot use in the language but the repl:
 	}
 
 	fun runRepl() {
-
-
 		console.addCompleter(this.completer)
-
 		println(GRepl.message)
-
 		val stage = LinkedList<Char>()
 
-		loop@
-		while (true) {
+		loop@ while (true) {
 			val sb = StringBuilder()
-
 			var first = true
-
 			val sss = CharArray(this.hint.length - 1) { ' ' }.run {
 				String(this)
 			} + "| "
-
 			var elcount = 0
-
 			try {
 				do {
 					if (elcount >= 2) {
