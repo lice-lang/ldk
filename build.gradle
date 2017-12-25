@@ -17,9 +17,14 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
+apply plugin: 'application'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+mainClassName = 'org.lice.tools.Main'
+
+configurations { library }
 
 repositories {
 	mavenCentral()
@@ -31,19 +36,8 @@ sourceSets {
 }
 
 jar {
-	manifest {
-		attributes 'Main-Class': 'org.lice.tools.Main'
-	}
-	from {
-		configurations
-				.library
-				.collect { it.isDirectory() ? it : zipTree(it) }
-	}
-}
-
-
-configurations {
-	library
+	manifest { attributes 'Main-Class': mainClassName }
+	from { configurations.library.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 
 allprojects {

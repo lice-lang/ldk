@@ -32,33 +32,20 @@ constructor(val symbolList: SymbolList = SymbolList(true)) {
 	var count: Int = 0
 
 	init {
-		symbolList.provideFunction(":help") {
-			"""This is the repl for lice language.
+		symbolList.defineVariable(":help", ValueNode(
+				"""This is the repl for lice language.
 
 You have 4 special commands which you cannot use in the language but the repl:
 
 :exit: exit the repl
 :pst: print the most recent stack trace
 :help: print this doc
-:version: check the version"""
-		}
+:version: check the version"""))
 
-		symbolList.provideFunction(":version") {
-			"""Lice language interpreter $VERSION
-			|GRepl ${Version}""".trimMargin()
-		}
-
-		symbolList.provideFunction("debug") {
-			throw UnsupportedOperationException()
-		}
-
-		symbolList.provideFunction("print") { ls ->
-			print(ls.joinToString(" "))
-		}
-
-		symbolList.provideFunction("println") { ls ->
-			println(ls.joinToString(" "))
-		}
+		symbolList.defineVariable(":version", ValueNode("Lice language interpreter $VERSION\nGRepl $Version"))
+		symbolList.provideFunction("print") { print(it.joinToString(" ")) }
+		symbolList.provideFunction("println") { println(it.joinToString(" ")) }
+		symbolList.provideFunction(":exit") { System.exit(0) }
 	}
 
 	val completer: Completer

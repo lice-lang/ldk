@@ -19,7 +19,7 @@ object ReplHelperSpec : Spek({
 		val sl = SymbolList()
 		on("check symbols") {
 			it("should contain plus") {
-				assertTrue("+" in sl.functions.keys)
+				assertTrue("+" in sl.variables.keys)
 			}
 		}
 	}
