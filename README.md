@@ -11,12 +11,11 @@ CodeShip|[![Codeship Status for lice-lang/lice-repl](https://app.codeship.com/pr
 
 Lice Development Kit.
 
-Supporting Lice 3.0-EAP!
+Supporting Lice 3.2.0!
 
 ## Features
 
 + Symbol completion
 + List all possible completion
-
 
 Enjoy lice!
