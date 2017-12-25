@@ -2,7 +2,7 @@ group 'org.lice'
 version '1.0.0'
 
 buildscript {
-	ext.kotlin_version = '1.1.51'
+	ext.kotlin_version = '1.2.10'
 	ext.spek_version = '1.1.5'
 
 	repositories {
@@ -18,8 +18,8 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'kotlin'
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
 	mavenCentral()
@@ -36,14 +36,14 @@ jar {
 	}
 	from {
 		configurations
-				.extraLibs
+				.library
 				.collect { it.isDirectory() ? it : zipTree(it) }
 	}
 }
 
 
 configurations {
-	extraLibs
+	library
 }
 
 allprojects {
@@ -54,12 +54,12 @@ allprojects {
 }
 
 dependencies {
-	extraLibs "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-	extraLibs 'com.github.lice-lang:lice:v3.1.3-2'
-	extraLibs 'commons-cli:commons-cli:1.4'
-	extraLibs 'jline:jline:2.14.5'
+	library "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+	library 'com.github.lice-lang:lice:v3.2.0'
+	library 'commons-cli:commons-cli:1.4'
+	library 'jline:jline:2.14.5'
 
-	configurations.compile.extendsFrom(configurations.extraLibs)
+	configurations.compile.extendsFrom(configurations.library)
 
 	testCompile group: 'junit', name: 'junit', version: '4.12'
 	testCompile "org.jetbrains.spek:spek-api:$spek_version"

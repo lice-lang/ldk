@@ -187,14 +187,14 @@ operator fun Number.minus(other: Number): Number =
 				}
 			is Double ->
 				when (other) {
-					is Byte -> TODO("")
-					is Short -> TODO("")
-					is Int -> TODO("")
-					is Long -> TODO("")
-					is Float -> TODO("")
-					is Double -> TODO("")
-					is BigInteger -> TODO("")
-					is BigDecimal -> TODO("")
+					is Byte -> TODO()
+					is Short -> TODO()
+					is Int -> TODO()
+					is Long -> TODO()
+					is Float -> TODO()
+					is Double -> TODO()
+					is BigInteger -> TODO()
+					is BigDecimal -> TODO()
 					else -> throw UnsupportedOperationException()
 				}
 			is BigInteger ->

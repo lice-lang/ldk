@@ -16,11 +16,12 @@ abstract class Token {
 	abstract val endColumn: Int?
 }
 
-data class StringToken(val value: String,
-                       override val beginLine: Int? = null,
-                       override val beginColumn: Int? = null,
-                       override val endLine: Int? = null,
-                       override val endColumn: Int? = null) : Token() {
+data class StringToken(
+		val value: String,
+		override val beginLine: Int? = null,
+		override val beginColumn: Int? = null,
+		override val endLine: Int? = null,
+		override val endColumn: Int? = null) : Token() {
 	class Builder(val beginLine: Int? = null, val beginColumn: Int? = null) {
 		val builder: StringBuilder = StringBuilder()
 
@@ -30,15 +31,14 @@ data class StringToken(val value: String,
 }
 
 
-data class NumberToken(val value: Number,
-                       override val beginLine: Int? = null,
-                       override val beginColumn: Int? = null,
-                       override val endLine: Int? = null,
-                       override val endColumn: Int? = null) : Token() {
+data class NumberToken(
+		val value: Number,
+		override val beginLine: Int? = null,
+		override val beginColumn: Int? = null,
+		override val endLine: Int? = null,
+		override val endColumn: Int? = null) : Token() {
 	companion object {
 		val integer = Regex("[1-9][0-9]*|0")
-
-
 	}
 
 	class Builder(val beginLine: Int? = null, val beginColumn: Int? = null) {
